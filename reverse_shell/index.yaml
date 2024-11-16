@@ -3,10 +3,10 @@ entries:
   reverse_shell:
   - apiVersion: v2
     appVersion: "1"
-    created: "2024-11-16T17:23:54.005963+01:00"
+    created: "2024-11-16T17:34:30.607052+01:00"
     description: A CronJob Helm chart for Kubernetes. Chart creates single cron job,
       also optionally it can create configmap and service-account.
-    digest: a8d06fdea3d2f2a0f3b878453af7df5e68a948bb763885b149184cca2ceff67d
+    digest: 681aadb1ff057288293d1db94c2ce28e13921b21f82d0606e68a3cec80001e22
     icon: https://www.pc-freak.net/images/linux-unix-list-all-crontab-users-and-scripts.png
     keywords:
     - cronjob
@@ -17,4 +17,4 @@ entries:
     urls:
     - https://aliaksxssv.github.io/attack-simulation/reverse_shell/reverse_shell-1.tgz
     version: "1"
-generated: "2024-11-16T17:23:54.005004+01:00"
+generated: "2024-11-16T17:34:30.606274+01:00"
