@@ -4,14 +4,14 @@
 
 image:
   repository: docker.io/aliaksxssv/attack-simulation
-  tag: reverse_shell
+  tag: reverse_shell_amd64
   imagePullPolicy: Always
   imagePullSecret: ""
 
 labels:
   app: attack-simulation-reverse-shell
 
-schedule: "* * * * *"
+schedule: "5 * * * *"
 command: ["/bin/bash"]
 args:
   - "/opt/attack_simulation/reverse_shell.sh"
