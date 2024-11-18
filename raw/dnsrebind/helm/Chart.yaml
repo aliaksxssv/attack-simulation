@@ -1,0 +1,11 @@
+apiVersion: v2
+appVersion: 1.0
+description: A CronJob Helm chart for Kubernetes. Chart creates single cron job to simulate dns rebind.
+keywords:
+- cronjob
+maintainers:
+- name: attack-simulation
+name: dns-rebind
+type: application
+version: 1.0
+icon: https://www.pc-freak.net/images/linux-unix-list-all-crontab-users-and-scripts.png
