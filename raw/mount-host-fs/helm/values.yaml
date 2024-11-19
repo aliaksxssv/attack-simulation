@@ -4,17 +4,17 @@
 
 image:
   repository: docker.io/aliaksxssv/attack-simulation
-  tag: dns_rebind_amd64
+  tag: mount_host_fs_amd64
   imagePullPolicy: Always
   imagePullSecret: ""
 
 labels:
-  app: attack-simulation-dns-rebind
+  app: attack-simulation-mount-host-fs
 
-schedule: "0 * * * *"
+schedule: "*/5 * * * *"
 command: ["/bin/bash"]
 args:
-  - "/opt/attack_simulation/dns_rebind.sh"
+  - "/opt/attack_simulation/mount_host_fs.sh"
 env: []
 
 resources: 
@@ -25,7 +25,11 @@ resources:
     cpu: 100m
     memory: 256Mi
 
-securityContext: {}
+#securityContext: {}
+
+securityContext:
+#  capability: SYS_ADMIN
+  privileged: true
 
 annotations: {}
 startingDeadlineSeconds: 240
