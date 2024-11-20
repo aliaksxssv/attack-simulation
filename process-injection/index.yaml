@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  process-injection:
+  - apiVersion: v2
+    appVersion: "1"
+    created: "2024-11-20T09:38:39.398088+01:00"
+    description: A CronJob Helm chart for Kubernetes. Chart creates single cron job
+      to simulate process-injection.
+    digest: d085c529e70415be11755a9dbdc20dbb76f6464bc601e57dd16e196e3fea1948
+    icon: https://www.pc-freak.net/images/linux-unix-list-all-crontab-users-and-scripts.png
+    keywords:
+    - cronjob
+    maintainers:
+    - name: attack-simulation
+    name: process-injection
+    type: application
+    urls:
+    - https://aliaksxssv.github.io/attack-simulation/process-injection/process-injection-1.tgz
+    version: "1"
+generated: "2024-11-20T09:38:39.397071+01:00"
