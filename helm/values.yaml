@@ -11,10 +11,10 @@ image:
 labels:
   app: attack-simulation
 
-schedule: "0 * * * *"
+schedule: "0 13 * * *"
 command: ["/bin/bash"]
 args:
-  - "/opt/scripts/attack_simulation.sh"
+  - "/opt/mitre/simulate.sh"
 env: []
 
 resources: 

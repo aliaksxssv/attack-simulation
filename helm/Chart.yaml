@@ -1,11 +1,14 @@
 apiVersion: v2
-appVersion: 1.0
-description: A CronJob Helm chart for Kubernetes. Chart creates single cron job to simulate dns rebind.
-keywords:
-- cronjob
-maintainers:
-- name: attack-simulation
 name: attack-simulation
+description: A CronJob Helm chart for Kubernetes to simulate MITRE ATT&CK techniques.
 type: application
-version: 1.0
-icon: https://www.pc-freak.net/images/linux-unix-list-all-crontab-users-and-scripts.png
+version: 1.0.0
+appVersion: 1.0
+keywords:
+  - cronjob
+  - security
+  - mitre
+  - attack-simulation
+maintainers:
+  - name: aliaksxssv
+icon: https://cdn-icons-png.flaticon.com/512/6150/6150615.png
