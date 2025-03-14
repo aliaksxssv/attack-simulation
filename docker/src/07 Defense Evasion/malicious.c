@@ -5,5 +5,5 @@
 // This function will execute when the shared library is loaded
 __attribute__((constructor))
 void run_on_load() {
-    printf("\n�~_~T� You are hacked! �~_~T�\n");
+    printf("\nYou are hacked!\n");
 }

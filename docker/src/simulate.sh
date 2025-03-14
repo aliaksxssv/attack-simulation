@@ -7,7 +7,6 @@ MAIN_DIR="/opt/mitre/"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 RED="\e[31m"
-BLUE="\e[34m"
 CYAN="\e[36m"
 RESET="\e[0m"
 
@@ -28,7 +27,8 @@ execute_scripts() {
 }
 
 # Initial notification about simulation start
-echo -e "${CYAN}Starting Mitre Attack techniques simulation ...${RESET}"
+echo -e "${CYAN}Starting Mitre Attack techniques simulation ... ${RESET} \n"
+echo -e "Check it out for more details: https://github.com/aliaksxssv/cloud-native-security \n"  
 
 # Loop through sorted directories and execute scripts inside them
 for dir in "${SCRIPT_DIRS[@]}"; do

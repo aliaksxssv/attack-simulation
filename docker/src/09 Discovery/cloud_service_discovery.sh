@@ -4,15 +4,17 @@
 GREEN="\e[32m"
 YELLOW="\e[33m"
 RED="\e[31m"
-BLUE="\e[34m"
-CYAN="\e[36m"
 RESET="\e[0m"
 
-# DNS Rebind Attack simulation for AWS
-echo -e "${CYAN}\n>>> [Discovery][AWS] Cloud Service Discovery Technique${RESET}"
-echo -e "More details: ${BLUE}https://github.com/aliaksxssv/cloud-security-cheatsheet/blob/main/09%20Discovery/Cloud%20Service%20Discovery.md${RESET}"
-echo "Don't forget to add AWS credentials to the Helm chart values"
+# aws services enumeration 
+echo -e "\n${YELLOW}>>> [Discovery] Cloud Service Discovery Technique ${RESET}"
+echo "Let's simulate the case when an attacker enumerates AWS services using valid credentials"
 
-if ! ~/go/bin/aws-enumerator cred || ! ~/go/bin/aws-enumerator enum; then
-    echo -e "${RED}Error! AWS services enumeration was failed${RESET}"
+echo "Trying to get AWS credentials from env variables and start enumeration ... "
+
+~/go/bin/aws-enumerator cred >> /dev/null 2>&1
+error=$(~/go/bin/aws-enumerator enum 2>&1)
+
+if [[ -n "$error" ]]; then
+    echo -e "${RED}Error! Enumeration failed. Check AWS credentials in Helm chat values ${RESET}"
 fi
