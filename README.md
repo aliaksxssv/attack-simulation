@@ -3,6 +3,7 @@
 ### Add Helm repo
 ``` bash
 $ helm repo add aliaksxssv https://aliaksxssv.github.io/attack-simulation/
+$ helm repo update aliaksxssv
 ``` 
 
 ### Customize values for chart
