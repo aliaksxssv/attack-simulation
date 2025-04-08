@@ -13,7 +13,7 @@ helm repo update aliaksxssv
 > **Heads up!** Put you attention at least to the "Secrets" sections. Don't use any credentials with sensitive permissions.
 
 ``` bash
-wget https://github.com/aliaksxssv/attack-simulation/blob/main/helm/values.yaml
+wget https://raw.githubusercontent.com/aliaksxssv/attack-simulation/refs/heads/main/helm/values.yaml
 ``` 
 
 ### Install Helm chart
