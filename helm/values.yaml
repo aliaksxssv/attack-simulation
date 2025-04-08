@@ -27,6 +27,9 @@ resources:
 
 securityContext: {}
 
+security:
+  privileged: true  # Set to true to enable privileged mode
+
 annotations: {}
 startingDeadlineSeconds: 240
 failedJobsHistoryLimit: 5

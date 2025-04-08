@@ -47,6 +47,8 @@ spec:
             imagePullPolicy: {{ .Values.image.imagePullPolicy }}
             name: {{ .Chart.Name }}
             {{- with .Values.env }}
+            securityContext:
+                privileged: {{ .Values.security.privileged | default false }}
             env:
 {{ toYaml . | indent 12 }}
             {{- end }}

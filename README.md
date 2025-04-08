@@ -10,10 +10,7 @@ helm repo update aliaksxssv
 
 ### Customize values for chart
 
-#### 🚨 Notice
-
 > **Heads up!** Put you attention at least to the "Schedule" and "Secrets" sections. Don't use any credentials with sensitive permissions.
-
 
 ``` bash
 wget https://github.com/aliaksxssv/attack-simulation/blob/main/helm/values.yaml
