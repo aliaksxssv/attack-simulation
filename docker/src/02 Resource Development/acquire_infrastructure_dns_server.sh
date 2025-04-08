@@ -15,7 +15,7 @@ TARGET_IP="169.254.169.254"
 DOMAIN="7f000001.a9fea9fe.rbndr.us"
 DNS_SERVER="8.8.8.8"
 
-MAX_ATTEMPTS=5  # Number of attempts
+MAX_ATTEMPTS=7  # Number of attempts
 attempt=0       # Initialize attempt counter
 
 echo "Trying to resolve domain ${DOMAIN} to the AWS IMDS IP address ..."
