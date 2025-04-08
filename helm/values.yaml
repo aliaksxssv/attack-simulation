@@ -26,7 +26,7 @@ resources:
     memory: 256Mi
 
 securityContext: 
-    privileged: true  # Set to true to enable privileged mode
+  privileged: true  # Set to true to enable privileged mode
 
 annotations: {}
 startingDeadlineSeconds: 240

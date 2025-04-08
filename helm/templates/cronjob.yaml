@@ -24,17 +24,16 @@ spec:
             {{- include "cronjob.labels" . | nindent 12 }}
         spec:
         {{- if .Values.securityContext }}
+        {{- if .Values.securityContext.runAsUser }}
           securityContext:
-            privileged: {{ .Values.securityContext.privileged | default false }}
-            {{- if .Values.securityContext.runAsUser }}
             runAsUser: {{ .Values.securityContext.runAsUser }}
-            {{- end }}
             {{- if .Values.securityContext.runAsGroup }}
             runAsGroup: {{ .Values.securityContext.runAsGroup }}
             {{- end }}
             {{- if .Values.securityContext.fsGroup }}
             fsGroup: {{ .Values.securityContext.fsGroup }}
             {{- end }}
+        {{- end }}
         {{- end }}
           {{- if .Values.image.imagePullSecret }}
           imagePullSecrets:
@@ -47,9 +46,9 @@ spec:
           - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.imagePullPolicy }}
             name: {{ .Chart.Name }}
-            {{- with .Values.env }}
             securityContext:
-               
+              privileged: {{ .Values.securityContext.privileged | default false }}
+            {{- with .Values.env }}
             env:
 {{ toYaml . | indent 12 }}
             {{- end }}
