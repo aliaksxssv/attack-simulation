@@ -17,6 +17,6 @@ entries:
     name: attack-simulation
     type: application
     urls:
-    - aliaksxssv.github.io/attack-simulation/attack-simulation-1.0.0.tgz
+    - attack-simulation-1.0.0.tgz
     version: 1.0.0
 generated: "2025-04-08T10:04:47.047798+02:00"
