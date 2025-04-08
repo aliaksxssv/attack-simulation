@@ -3,9 +3,9 @@ entries:
   attack-simulation:
   - apiVersion: v2
     appVersion: "1"
-    created: "2025-04-08T10:04:47.048461+02:00"
+    created: "2025-04-08T12:11:27.782028+02:00"
     description: A CronJob Helm chart for Kubernetes to simulate MITRE ATT&CK techniques
-    digest: 3bdf3ccccbe89538dc3c6aa5bf1abb9402c923d266390bc05bec53aa4dcf9512
+    digest: 2dbbd5be32e7c5dd1390c7ca4cac7805162b2eb8173f0bb60433d0dcf3f0f34a
     icon: https://cdn-icons-png.flaticon.com/512/6150/6150615.png
     keywords:
     - cronjob
@@ -19,4 +19,4 @@ entries:
     urls:
     - attack-simulation-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-08T10:04:47.047798+02:00"
+generated: "2025-04-08T12:11:27.781566+02:00"
