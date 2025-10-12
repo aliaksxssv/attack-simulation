@@ -1,8 +1,10 @@
 FROM ubuntu:jammy
 
-# install aws-enumerator
+# install aws-enumerator with memory optimization
 RUN apt update && apt install -y --no-install-recommends \
     git golang ca-certificates && \
+    export GOMAXPROCS=2 && \
+    export GOGC=50 && \
     go install -v github.com/shabarkin/aws-enumerator@latest
 
 # install common tools
