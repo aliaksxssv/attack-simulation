@@ -4,8 +4,14 @@ on:
   push:
     branches: [ main, master ]
     tags: [ 'v*' ]
+    paths:
+      - 'docker/**'
+      - '.github/workflows/docker.yml'
   pull_request:
     branches: [ main, master ]
+    paths:
+      - 'docker/**'
+      - '.github/workflows/docker.yml'
   workflow_dispatch:  # Allow manual trigger
 
 env:
