@@ -12,7 +12,9 @@ RUN apt update && apt install -y --no-install-recommends \
 RUN apt update && apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends
 
 # install aws cli
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+RUN apt update && apt install -y --no-install-recommends \
+    curl ca-certificates && \
+    curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
     ./aws/install && \
     rm -rf awscliv2.zip aws/
