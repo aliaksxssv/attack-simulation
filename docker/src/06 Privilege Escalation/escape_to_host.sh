@@ -14,7 +14,7 @@ capability=$(capsh --print | grep "Bounding set" | grep -q "CAP_SYS_ADMIN");
 device=$(lsblk -o NAME,SIZE -d | sort -k2 -h | tail -n 1 | awk '{print $1}')
 error=$(mount /dev/$device /mnt/ 2>&1)
 
-echo "Checking capabilities and trying to mount root host device ..."
+echo "Checking Linux capabilities and trying to mount root host device ..."
 
 if [[ -z "$capability" ]]; then
     echo -e "${RED}Error! CAP_SYS_ADMIN capability was not found ${RESET}"

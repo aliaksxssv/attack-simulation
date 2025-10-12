@@ -16,25 +16,25 @@ echo "Let's simulate the case when the file is executed and self-removed"
 echo "Trying to create bash script with self-removing functionality ... "
 
 # Get the full path for the script
-SCRIPT_PATH="$(realpath self-remove.sh 2>/dev/null || echo "$(pwd)/self-remove.sh")"
+SCRIPT_PATH="/tmp/self-remove.sh"
 
 # Create the self-removing script
-if ! echo -e '#!/bin/bash \n echo "Hello from self-removing script!" > /dev/null 2>&1 \n rm -- "$0"' > self-remove.sh; then
+if ! echo -e '#!/bin/bash \n echo "Hello from self-removing script!" > /dev/null 2>&1 \n rm -- "$0"' > $SCRIPT_PATH; then
     error="Failed to create ${SCRIPT_PATH}"
 fi
 
 # Make the script executable
-if [[ -z "$error" ]] && ! chmod +x self-remove.sh; then
+if [[ -z "$error" ]] && ! chmod +x "$SCRIPT_PATH"; then
     error="Failed to make ${SCRIPT_PATH} executable"
 fi
 
 # Execute the script
-if [[ -z "$error" ]] && ! ./self-remove.sh; then
+if [[ -z "$error" ]] && ! "$SCRIPT_PATH"; then
     error="Failed to execute ${SCRIPT_PATH}"
 fi
 
 # Check if script was actually deleted (self-removal worked)
-if [[ -z "$error" ]] && [[ -f "self-remove.sh" ]]; then
+if [[ -z "$error" ]] && [[ -f "$SCRIPT_PATH" ]]; then
     error="${SCRIPT_PATH} was executed but self-removal failed"
 fi
 

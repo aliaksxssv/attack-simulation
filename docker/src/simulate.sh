@@ -34,3 +34,5 @@ echo -e "Check it out for more details: https://github.com/aliaksxssv/cloud-nati
 for dir in "${SCRIPT_DIRS[@]}"; do
     execute_scripts "$dir"
 done
+
+sleep 300

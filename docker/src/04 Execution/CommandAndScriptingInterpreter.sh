@@ -8,9 +8,9 @@ RESET="\e[0m"
 
 # intro
 echo -e "\n${YELLOW}>>> [Execution] Command and Scripting Interpreter: Unix Shell Technique ${RESET}"
-echo "Let's simulate the case when an attacker uses Reverse Shell to get remote control over the remote host"
+echo "Let's simulate the case when an attacker uses Reverse Shell to get remote control over the host"
 
-echo "Trying to establish connection to the local port TCP/4444 using nc and bash execution ... "
+echo "Attempting to bind bash stdin to the local TCP port 4444 ..."
 
 # launch local listener
 nc -lp 4444 > /dev/null 2>&1 &
