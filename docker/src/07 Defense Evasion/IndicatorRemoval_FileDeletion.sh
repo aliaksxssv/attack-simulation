@@ -11,7 +11,9 @@ error=""
 
 # indicator removal: file deletion technique
 echo -e "\n${YELLOW}>>> [Defense Evasion] Indicator Removal: File Deletion Technique ${RESET}"
-echo "Simulating attacker executing a self-removing script"
+echo "Let's simulate the case when malicious file is executed and self-removed"
+
+echo "Trying to create bash script with self-removing functionality ... "
 
 # Create the self-removing script
 if ! echo -e '#!/bin/bash \n echo "Hello from self-removing script!" > /dev/null 2>&1 \n rm -- "$0"' > deirfd.sh; then
