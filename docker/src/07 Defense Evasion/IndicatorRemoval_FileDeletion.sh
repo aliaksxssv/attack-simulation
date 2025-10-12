@@ -11,9 +11,9 @@ error=""
 
 # indicator removal: file deletion technique
 echo -e "\n${YELLOW}>>> [Defense Evasion] Indicator Removal: File Deletion Technique ${RESET}"
-echo "Let's simulate the case when the file is executed and self-removed"
+echo "Let's simulate the case when an attacker uses file deletion to remove evidence"
 
-echo "Trying to create bash script with self-removing functionality ... "
+echo "Executing bash script with self-removing functionality ... "
 
 # Get the full path for the script
 SCRIPT_PATH="/tmp/self-remove.sh"
