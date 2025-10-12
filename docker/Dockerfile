@@ -1,7 +1,7 @@
 FROM ubuntu:jammy
 
 # install common tools
-RUN apt install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     vim unzip sudo libcap2-bin
 
 # install networking/cloud tools
@@ -9,7 +9,7 @@ RUN apt update && apt install -y --no-install-recommends \
     netcat-traditional net-tools iperf3 dnsutils curl wget
 
 # install gcc python
-RUN apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends
+RUN apt update && apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends
 
 # install aws cli
 RUN ARCH=$(uname -m); \
