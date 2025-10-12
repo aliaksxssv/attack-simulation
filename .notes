@@ -1,0 +1,159 @@
+Defense Evasion
+Indicator Removal: File Deletion
+
+echo -e '#!/bin/bash\necho "Hello from self-removing script!"\nrm -- "$0"' > stat.sh
+chmod +x stat.sh
+./stat.sh
+
+-----
+
+Defense Evasion
+Hide Artifacts: Hidden Files and Directories
+
+mkdir -p /tmp/.stat
+echo -e '#!/bin/bash\necho "Hello from hidden folder!"' > /tmp/.stat/stat.sh
+chmod +x /tmp/.stat/stat.sh
+/tmp/.stat/stat.sh
+
+------
+
+Privilege Escalation
+
+Abuse Elevation Control Mechanism: Sudo and Sudo Caching
+
+sudo su; id; exit
+
+-----
+
+Persistance
+Scheduled Task/Job: Cron
+ 
+echo -e '#!/bin/bash\necho "Hello from cron!"' > /usr/local/bin/test_script.sh
+( crontab -l 2>/dev/null; echo "0 * * * * /usr/local/bin/test_script.sh" ) | crontab -
+
+----- 
+
+Impact 
+Resource Hijacking: Compute Hijacking
+nslookup us2.litecoinpool.org.
+
+-----
+
+Execution
+Deploy Container
+
+privileged container
+
+-------
+
+
+Crdential Access 
+Unsecured Credentials: Cloud Instance Metadata API
+
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+------
+
+
+ Executing Malicious Binary
+Attack stage: In the first, the attacker runs the main binary on the target resource.
+
+To download it, the cluster network policies must allow the domain https://wiz-sensor-attack-simulation.s3.amazonaws.com.
+Related detection(s) in Wiz:
+
+Container drift - executable (binary) not present in container image was executed (TA0002 ↗)
+Detection Purpose: Spots executables introduced post-deployment, violating container immutability.
+Relevance: Runtime drift is an indicator of post-exploitation payload delivery.
+
+Process was executed from a suspicious location on writeable layer (T1059.004 ↗)
+Detection Purpose: Looks for process execution from non-standard paths such as /tmp
+Relevance: Attackers often use writeable directories to store and launch payloads undetected.
+
+
+----
+
+
+Information Gathering
+Attack stage: In the second step, the attacker scans the environment. Aware of detection mechanisms, they attempt to evade monitoring using renamed binaries and short-lived execution.
+
+Related detection(s) in Wiz:
+
+Process executed via file descriptor (TA0002 ↗)
+Detection Purpose: Detects execution through /proc/self/fd or similar paths to bypass disk-based monitoring.
+Relevance: Used in red teaming and malware to evade traditional detection mechanisms.
+
+Multiple network scanning tools executed within short timeframe (T1595 ↗)
+Detection Purpose: Captures rapid execution of tools like nmap, masscan, and zmap within the same session.
+Relevance: Indicates a discovery phase during an attack attempting to map internal networks.
+
+Multiple network scanning processes executed in sequence in a short time frame (T1210 ↗)
+Detection Purpose: Monitors for a burst of unsuccessful connection attempts, suggesting scanning or brute force activity.
+Relevance: Common in lateral movement or host discovery attempts.
+
+
+-----
+
+
+Sensitive Data Hunt
+Attack stage: In the third stage, the attacker searches for credentials on the machine to use for lateral movement or external access.
+
+Related detection(s) in Wiz:
+
+Containerized process performed a request to AWS IMDSv1 (T1552.005 ↗)
+Detection Purpose: Highlights usage of IMDSv1, a deprecated and less secure metadata access method.
+Relevance: Attackers commonly exploit IMDSv1 to extract credentials from misconfigured cloud workloads.
+
+Container performed requests for AWS IMDS using mixed protocol versions (TA0008 ↗)
+Detection Purpose: Flags access attempts to AWS metadata endpoints using both IMDSv1 and IMDSv2, which may indicate fallback probing. Relevance: IMDS-based reconnaissance can reveal sensitive credentials and often precedes cloud privilege escalation. Access attempts to both protocol versions may suggest an attacker unfamiliar with the environment.
+
+Kubernetes service account token was accessed (T1552.001 ↗)
+Detection Purpose: Tracks direct access to in-cluster tokens from containerized processes.
+Relevance: An indicator of privilege escalation and lateral movement attempts in Kubernetes environments.
+
+AWS credentials file access from unusual location (TA0006 ↗)
+Detection Purpose: Unexpected access to AWS credentials may indicate credential harvesting attempts or misconfigured automation.
+Relevance: Frequently used by attackers to pivot to AWS APIs or dump secrets from developer machines or CI/CD pipelines.
+
+
+---
+
+Elevating Access and Maintaining Presence
+Attack stage: In the fourth stage, the attacker escalates privileges, persists access, and may access host data or exploit the environment.
+
+Related detection(s) in Wiz:
+
+Compiler tool executed (T1027.004 ↗)
+Detection Purpose: Tracks unexpected use of compilers within runtime containers, which is often suspicious.
+Relevance: Attackers may compile payloads on the fly to tailor malware to the compromised environment.
+
+Chroot sudo local privilege escalation executed (T1068 ↗)
+Detection Purpose: Identifies use of a known sudo/chroot abuse pattern for local privilege escalation.
+Relevance: Used to break out of restricted shells or escalate access in cloud/container environments.
+
+Cron job was added/modified (T1053.003 ↗)
+Detection Purpose: Monitors for cron persistence.
+Relevance: Used to ensure payload re-execution across restarts or scheduled intervals.
+
+Containerized process accessed user management file on host (T1611 ↗)
+Detection Purpose: Detects when an unrecognized or suspicious process accesses sensitive user account files like /etc/shadow.
+Relevance: This behavior is commonly seen during reconnaissance or credential harvesting in post exploitation of an attack.
+
+
+----
+
+Execute crypto miner
+Attack stage: Final stage involves running the crypto miner.
+
+Related detection(s) in Wiz:
+
+Suspected cryptomining Stratum protocol detected (T1496 ↗)
+Detection Purpose: Identifies use of the Stratum protocol, frequently leveraged in cryptomining operations.
+Relevance: Threat actors use Stratum to control and monitor mining activity in hijacked cloud environments.
+
+DNS query for a known cryptomining domain (T1496 ↗)
+Detection Purpose: Detects attempts to contact known mining domains using DNS, a common early-stage indicator of cryptomining malware.
+Relevance: Such behavior is prevalent in financially motivated attacks where compromised workloads are repurposed for mining operations.
+
+Self-deleting binary executed (T1070.004 ↗)
+Detection Purpose: Flags binaries that remove themselves after execution, a known evasion tactic.
+Relevance: Often used in post exploitation to remove evidence of execution.
