@@ -32,22 +32,31 @@ docker build --platform linux/arm64 -t aliaksxssv/attack-simulation:arm64 ./dock
 docker build --platform linux/amd64 -t aliaksxssv/attack-simulation:amd64 ./docker
 ```
 
-### Add Helm repo
-``` bash
+### Helm Chart
+
+The Helm chart automatically uses the latest multi-platform Docker image (`aliaksxssv/attack-simulation:latest`) which supports both AMD64 and ARM64 architectures.
+
+#### Add Helm repo
+```bash
 helm repo add aliaksxssv https://aliaksxssv.github.io/attack-simulation/
 helm repo update aliaksxssv
-``` 
+```
 
-### Customize values for chart
+#### Customize values for chart
 
-> **Heads up!** Put you attention at least to the "Secrets" sections. Don't use any credentials with sensitive permissions.
+> **Heads up!** Pay attention to the "Secrets" sections. Don't use any credentials with sensitive permissions.
 
-``` bash
+```bash
 wget https://raw.githubusercontent.com/aliaksxssv/attack-simulation/refs/heads/main/helm/values.yaml
-``` 
+```
 
-### Install Helm chart
-``` bash
+#### Install Helm chart
+```bash
 helm install attack-simulation aliaksxssv/attack-simulation -f values.yaml --namespace attack-simulation --create-namespace
+```
 
-``` 
+#### Chart Features
+- **Multi-platform support**: Automatically pulls the correct architecture for your nodes
+- **CronJob scheduling**: Runs attack simulations on a configurable schedule
+- **Security context**: Supports privileged mode for advanced attack techniques
+- **Resource management**: Configurable CPU and memory limits 
