@@ -10,7 +10,7 @@ RESET="\033[0m"
 echo -e "\n${YELLOW}>>> [Discovery] Cloud Service Discovery Technique ${RESET}"
 echo "Let's simulate the case when an attacker enumerates AWS services using valid credentials"
 
-echo "Attempting to discover AWS services using AWS CLI (10 requests to 5 popular services) ... "
+echo "Attempting to discover AWS services using AWS CLI (EC2, S3, IAM, RDS, Lambda) ... "
 
 # Initialize error variable
 error=""
@@ -65,5 +65,5 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! ${error}. Check Helm chart values for AWS credentials ${RESET}"
 else 
-    echo -e "${GREEN}Success! AWS service discovery completed (EC2, S3, IAM, RDS, Lambda) ${RESET}"
+    echo -e "${GREEN}Success! AWS service enumeration completed ${RESET}"
 fi
