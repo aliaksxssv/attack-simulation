@@ -41,5 +41,5 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! Attack simulation failed: ${error} ${RESET}"
 else
-    echo -e "${GREEN}Success! ${SCRIPT_PATH} was executed and self-removed ${RESET}"
+    echo -e "${GREEN}Success! Script ${SCRIPT_PATH} was executed and self-removed ${RESET}"
 fi

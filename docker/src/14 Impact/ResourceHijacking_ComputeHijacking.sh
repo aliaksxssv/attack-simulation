@@ -16,7 +16,7 @@ echo "Attempting to resolve DNS name us2.litecoinpool.org ... "
 error=""
 
 # Check DNS resolution status
-if ! host us2.litecoinpool.org > /dev/null 2>&1; then
+if ! nslookup us2.litecoinpool.org > /dev/null 2>&1; then
     error="DNS resolution failed for us2.litecoinpool.org"
 fi
 
