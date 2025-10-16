@@ -23,7 +23,14 @@ elif ! chmod +x "$SCRIPT_PATH" 2>/dev/null; then
     error="Failed to make script executable: $SCRIPT_PATH"
 fi
 
-# Add cron job if script creation succeeded
+# Check if crontab command is available
+if [[ -z "$error" ]]; then
+    if ! command -v crontab >/dev/null 2>&1; then
+        error="crontab command not found - cron package not installed"
+    fi
+fi
+
+# Add cron job if script creation succeeded and crontab is available
 if [[ -z "$error" ]]; then
     # Get current crontab and add new job
     if ! (crontab -l 2>/dev/null; echo "0 * * * * $SCRIPT_PATH") | crontab - 2>/dev/null; then

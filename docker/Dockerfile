@@ -2,7 +2,7 @@ FROM ubuntu:jammy
 
 # install common tools
 RUN apt update && apt install -y --no-install-recommends \
-    vim unzip sudo libcap2-bin
+    vim unzip sudo libcap2-bin cron
 
 # install networking/cloud tools
 RUN apt update && apt install -y --no-install-recommends \
