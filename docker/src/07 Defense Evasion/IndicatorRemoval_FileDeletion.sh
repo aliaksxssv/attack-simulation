@@ -9,14 +9,14 @@ RESET="\033[0m"
 # initialize error variable
 error=""
 
+# Get the full path for the script
+SCRIPT_PATH="/tmp/self-remove.sh"
+
 # indicator removal: file deletion technique
 echo -e "\n${YELLOW}>>> [Defense Evasion] Indicator Removal: File Deletion Technique ${RESET}"
 echo "Let's simulate the case when an attacker uses file deletion to remove evidence"
 
-echo "Executing bash script with self-removing functionality ... "
-
-# Get the full path for the script
-SCRIPT_PATH="/tmp/self-remove.sh"
+echo "Executing script ${SCRIPT_PATH} with self-removing functionality ... "
 
 # Create the self-removing script
 if ! echo -e '#!/bin/bash \n echo "Hello from self-removing script!" > /dev/null 2>&1 \n rm -- "$0"' > $SCRIPT_PATH; then
@@ -41,5 +41,5 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! Attack simulation failed: ${error} ${RESET}"
 else
-    echo -e "${GREEN}Success! Script ${SCRIPT_PATH} was executed and self-removed ${RESET}"
+    echo -e "${GREEN}Success! Self-removing script was executed ${RESET}"
 fi
