@@ -3,12 +3,12 @@ entries:
   attack-simulation:
   - apiVersion: v2
     appVersion: latest
-    created: "2025-10-12T10:09:48.786315709Z"
-    description: A CronJob Helm chart for Kubernetes to simulate MITRE ATT&CK techniques
-    digest: e16a115e4f71c03012ac7c76cacfe43495bf6ff550637ad92099829c7f3336f4
+    created: "2025-11-24T14:53:48.020140192Z"
+    description: A Job Helm chart for Kubernetes to simulate MITRE ATT&CK techniques
+    digest: 390fee835260e5235bb3bf0f0f8c72f3a48f8b7a79cebece36d401254d0acb0e
     icon: https://cdn-icons-png.flaticon.com/512/6150/6150615.png
     keywords:
-    - cronjob
+    - job
     - security
     - mitre
     - attack-simulation
@@ -17,6 +17,6 @@ entries:
     name: attack-simulation
     type: application
     urls:
-    - https://aliaksxssv.github.io/attack-simulation/attack-simulation-1.1.0.tgz
-    version: 1.1.0
-generated: "2025-10-12T10:09:48.785393619Z"
+    - https://aliaksxssv.github.io/attack-simulation/attack-simulation-1.2.0.tgz
+    version: 1.2.0
+generated: "2025-11-24T14:53:48.019634105Z"
