@@ -19,6 +19,10 @@ RUN apt update && apt install -y --no-install-recommends \
     ./aws/install && \
     rm -rf awscliv2.zip aws/
 
+# install kubectl
+RUN curl -fsSLo /usr/local/bin/kubectl https://dl.k8s.io/release/v1.29.6/bin/linux/amd64/kubectl && \
+    chmod +x /usr/local/bin/kubectl
+
 # copy scripts to the image
 COPY ./src/ /opt/mitre/ 
 
