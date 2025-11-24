@@ -19,9 +19,19 @@ RUN apt update && apt install -y --no-install-recommends \
     ./aws/install && \
     rm -rf awscliv2.zip aws/
 
-# install kubectl
-RUN curl -fsSLo /usr/local/bin/kubectl https://dl.k8s.io/release/v1.29.6/bin/linux/amd64/kubectl && \
-    chmod +x /usr/local/bin/kubectl
+# install kubectl (architecture-aware using Docker Buildx TARGETPLATFORM)
+ARG TARGETPLATFORM
+RUN ARCH=$(echo ${TARGETPLATFORM} | cut -d'/' -f2) && \
+    if [ "$ARCH" = "amd64" ]; then \
+        KUBECTL_ARCH="amd64"; \
+    elif [ "$ARCH" = "arm64" ]; then \
+        KUBECTL_ARCH="arm64"; \
+    else \
+        echo "Unsupported architecture: $ARCH" && exit 1; \
+    fi && \
+    curl -fsSLo /usr/local/bin/kubectl "https://dl.k8s.io/release/v1.29.6/bin/linux/${KUBECTL_ARCH}/kubectl" && \
+    chmod +x /usr/local/bin/kubectl && \
+    kubectl version --client
 
 # copy scripts to the image
 COPY ./src/ /opt/mitre/ 
