@@ -8,9 +8,9 @@ RESET="\033[0m"
 
 # aws services enumeration 
 echo -e "\n${YELLOW}>>> [Discovery] Cloud Service Discovery Technique ${RESET}"
-echo "Let's simulate the case when an attacker enumerates AWS services using valid credentials"
+echo "Let's simulate the case when an attacker enumerates AWS services with IAM user credentials"
 
-echo "Attempting to discover AWS services using AWS CLI (EC2, S3, IAM, RDS, Lambda) ... "
+echo "Discovering AWS EC2, S3, IAM, RDS, and Lambda using aws cli ... "
 
 # Initialize error variable
 error=""

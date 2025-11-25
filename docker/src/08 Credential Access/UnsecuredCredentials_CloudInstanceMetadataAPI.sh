@@ -8,7 +8,7 @@ RESET="\033[0m"
 
 # intro
 echo -e "\n${YELLOW}>>> [Credential Access] Unsecured Credentials: Cloud Instance Metadata API Technique ${RESET}"
-echo "Let's simulate the case when an attacker uses AWS IMDS v1 to get IAM credentials"
+echo "Let's simulate the case when an attacker uses AWS IMDS to get IAM credentials"
 
 echo "Attempting to access AWS Instance Metadata API at 169.254.169.254 ..."
 
