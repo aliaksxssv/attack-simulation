@@ -30,6 +30,9 @@ RUN ARCH=$(echo ${TARGETPLATFORM} | cut -d'/' -f2) && \
     ./aws/install && \
     rm -rf awscliv2.zip aws/
 
+# Disable AWS CLI pager (prevents "less" not found errors)
+ENV AWS_PAGER=""
+
 # install kubectl (architecture-aware using Docker Buildx TARGETPLATFORM)
 RUN ARCH=$(echo ${TARGETPLATFORM} | cut -d'/' -f2) && \
     if [ "$ARCH" = "amd64" ]; then \
