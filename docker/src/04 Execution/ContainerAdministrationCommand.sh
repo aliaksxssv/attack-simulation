@@ -29,5 +29,5 @@ else
     NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace 2>/dev/null || echo "default")
     POD_NAME="${HOSTNAME}"
     kubectl exec -n "${NAMESPACE}" -it "${POD_NAME}" -- /bin/bash >/dev/null 2>&1
-    echo -e "${GREEN}Success! Request to execute /bin/bash in the container was sent to the API Server ${RESET}"
+    echo -e "${GREEN}Success! Request to execute command in the container was sent to the API Server ${RESET}"
 fi
