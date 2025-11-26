@@ -25,10 +25,11 @@ RUN ARCH=$(echo ${TARGETPLATFORM} | cut -d'/' -f2) && \
     fi && \
     apt update && apt install -y --no-install-recommends \
     curl ca-certificates unzip && \
-    curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install && \
-    rm -rf awscliv2.zip aws/
+    curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "/tmp/awscliv2.zip" && \
+    unzip -q /tmp/awscliv2.zip -d /tmp && \
+    /tmp/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli && \
+    rm -rf /tmp/awscliv2.zip /tmp/aws && \
+    aws --version
 
 # Disable AWS CLI pager (prevents "less" not found errors)
 ENV AWS_PAGER=""
