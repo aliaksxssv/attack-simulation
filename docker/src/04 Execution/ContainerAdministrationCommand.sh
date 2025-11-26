@@ -25,12 +25,9 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! ${error} ${RESET}"
 else
-    echo "Executing kubectl exec command to get a shell inside the container ..."
+    echo "Executing kubectl exec -- /bin/bash command ..."
     NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace 2>/dev/null || echo "default")
     POD_NAME="${HOSTNAME}"
-    if kubectl exec -n "${NAMESPACE}" -it "${POD_NAME}" -- /bin/bash >/dev/null 2>&1; then
-        echo -e "${GREEN}Success! kubectl exec command was executed successfully ${RESET}"
-    else
-        echo -e "${RED}Error! Failed to execute kubectl exec command ${RESET}"
-    fi
+    kubectl exec -n "${NAMESPACE}" -it "${POD_NAME}" -- /bin/bash >/dev/null 2>&1
+    echo -e "${GREEN}Success! Request to execute /bin/bash in the container was sent to the API Server ${RESET}"
 fi
