@@ -12,20 +12,25 @@ echo "Let's simulate the case when an attacker enumerates AWS services with IAM 
 
 echo "Discovering AWS EC2, S3, IAM, RDS, and Lambda using aws cli ... "
 
+# initialize error variable
+error = ""
+
 # Validate AWS credentials before attempting enumeration
 if identity_output=$(aws sts get-caller-identity --output text 2>&1); then
-    :
+    aws ec2 describe-instances --region us-east-1 > /dev/null 2>&1
+    aws s3 ls > /dev/null 2>&1
+    aws iam list-users > /dev/null 2>&1
+    aws rds describe-db-instances --region us-east-1 > /dev/null 2>&1
+    aws lambda list-functions --region us-east-1 > /dev/null 2>&1
 else
-    echo -e "${RED}Error! Ensure Access Key ID, Secret Access Key, and region are set and valid in the Helm values${RESET}"
-    exit 1
+    error = "${RED}Ensure Access Key ID, Secret Access Key, and region are set and valid in the Helm values${RESET}"
 fi
 
-# Execute AWS CLI commands
-aws ec2 describe-instances --region us-east-1
-aws s3 ls
-aws iam list-users
-aws rds describe-db-instances --region us-east-1
-aws lambda list-functions --region us-east-1
+# display results
+if [[ -n "$error" ]]; then
+    echo -e "${RED}Error! ${error} ${RESET}"
+else
+    echo -e "${GREEN}Success! AWS services enumeration completed ${RESET}"
+fi
 
-# Display success message
-echo -e "${GREEN}Success! AWS service enumeration completed ${RESET}"
+
