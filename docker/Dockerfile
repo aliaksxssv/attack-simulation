@@ -9,7 +9,7 @@ RUN apt update && apt install -y --no-install-recommends \
 
 # install networking/cloud tools
 RUN apt update && apt install -y --no-install-recommends \
-    netcat-traditional net-tools iperf3 dnsutils curl wget
+    netcat-traditional net-tools iperf3 dnsutils curl wget nmap iproute2
 
 # install gcc python
 RUN apt update && apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends

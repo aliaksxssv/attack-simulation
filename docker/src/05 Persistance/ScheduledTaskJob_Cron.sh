@@ -8,7 +8,7 @@ RESET="\033[0m"
 
 # persistence technique
 echo -e "\n${YELLOW}>>> [Persistence] Scheduled Task/Job: Cron Technique ${RESET}"
-echo "Let's simulate adding cron job to execute script every hour"
+echo "Let's simulate adding Linux cron job to execute script every hour"
 
 echo "Creating cron job via crontab command ... "
 
@@ -26,7 +26,7 @@ fi
 # Check if crontab command is available
 if [[ -z "$error" ]]; then
     if ! command -v crontab >/dev/null 2>&1; then
-        error="crontab command not found - cron package not installed"
+        error="Crontab command not found - cron package not installed"
     fi
 fi
 
@@ -41,7 +41,7 @@ fi
 # Verify cron job was added
 if [[ -z "$error" ]]; then
     if ! crontab -l 2>/dev/null | grep -q "$SCRIPT_PATH"; then
-        error="Cron job was not added successfully"
+        error="Linux cron job was not added to crontab"
     fi
 fi
 
@@ -49,6 +49,6 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! ${error} ${RESET}"
 else
-    echo -e "${GREEN}Success! Cron job was created and added to crontab ${RESET}"
+    echo -e "${GREEN}Success! Linux cron job was added to crontab ${RESET}"
 fi
 
