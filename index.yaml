@@ -3,9 +3,9 @@ entries:
   attack-simulation:
   - apiVersion: v2
     appVersion: latest
-    created: "2025-11-24T14:53:48.020140192Z"
+    created: "2025-11-27T07:31:00.83701458Z"
     description: A Job Helm chart for Kubernetes to simulate MITRE ATT&CK techniques
-    digest: 390fee835260e5235bb3bf0f0f8c72f3a48f8b7a79cebece36d401254d0acb0e
+    digest: a7350e4e278ba5c4b5be588296e4890f20c70cb8c844ba43e4ed3b1983b9d9f2
     icon: https://cdn-icons-png.flaticon.com/512/6150/6150615.png
     keywords:
     - job
@@ -19,4 +19,4 @@ entries:
     urls:
     - https://aliaksxssv.github.io/attack-simulation/attack-simulation-1.2.0.tgz
     version: 1.2.0
-generated: "2025-11-24T14:53:48.019634105Z"
+generated: "2025-11-27T07:31:00.836496049Z"
