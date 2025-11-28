@@ -23,7 +23,7 @@ if ! mount /dev/$device /mnt/ >/dev/null 2>&1; then
     error="Failed to mount /dev/$device"
 fi
 
-elif [[ -n "$error" ]]; then
+if [[ -n "$error" ]]; then
     echo -e "${RED}Error! Mount attempt was done but failed: $error ${RESET}"
     else
     echo -e "${Green}Success! Mount attempt was successful ${RESET}"
