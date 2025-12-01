@@ -10,7 +10,7 @@ RESET="\033[0m"
 echo -e "\n${YELLOW}>>> [Exfiltration] Automated Exfiltration Technique ${RESET}"
 echo "Let's simulate the case when an attacker exfiltrates sensitive data"
 
-echo "Exfiltrating fake sensitive files via HTTP POST requests ... "
+echo "Creating fake sensitive files in /tmp/data directory ... "
 
 # Exfiltrate fake sensitive data
 mkdir -p /tmp/data
@@ -20,6 +20,8 @@ echo "User credentials and passwords" > /tmp/data/credentials.txt
 
 dd if=/dev/urandom bs=1M count=50 of=/tmp/data/database.dump 2>/dev/null
 dd if=/dev/urandom bs=1M count=50 of=/tmp/data/logs.tar.gz 2>/dev/null
+
+echo "Exfiltrating files via HTTP POST requests to http://httpbin.org/post ... "
 
 # Multiple file uploads 
 error=""

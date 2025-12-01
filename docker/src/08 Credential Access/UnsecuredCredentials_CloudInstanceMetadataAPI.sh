@@ -16,7 +16,7 @@ echo "Attempting to access AWS Instance Metadata API at 169.254.169.254 ..."
 error=""
 
 #cGet IAM credentials and check if any were returned
-credentials=$(curl -s --connect-timeout 3 http://169.254.169.254/latest/meta-data/iam/security-credentials/ 2>/dev/null)
+credentials=$(curl -s --connect-timeout 5 http://169.254.169.254/latest/meta-data/iam/security-credentials/ 2>/dev/null)
 
 # check if credentials were returned
 if [[ -z "$credentials" ]]; then

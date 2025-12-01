@@ -42,5 +42,5 @@ fi
 if [[ -n "$error" ]]; then
     echo -e "${RED}Error! $error ${RESET}"
     else
-    echo -e "${Green}Success! Mount attempt was successful ${RESET}"
+    echo -e "${GREEN}Success! Mount attempt was successful ${RESET}"
 fi
