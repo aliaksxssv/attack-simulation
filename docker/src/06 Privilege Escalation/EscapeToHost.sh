@@ -16,18 +16,19 @@ error=""
 echo "Discovering root host devices and partitions ..."
 
 # Discover root host partition (prefer partitions over raw disks)
-# Extract device name using regex to match device pattern (e.g., vda1, sda1, etc.)
-device=$(lsblk -o NAME,SIZE,TYPE | grep -E "part" | sort -k2 -h | tail -n 1 | grep -oE '[a-z]+[0-9]+' | head -1)
+# Extract device name - handle both simple (vda1, sda1) and NVMe (nvme0n1p1) patterns
+# Get first column (device name), remove all special characters, keep only alphanumeric
+device=$(lsblk -o NAME,SIZE,TYPE | grep -E "part" | sort -k2 -h | tail -n 1 | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g')
 
 # If no partition found, fall back to the largest disk
 if [[ -z "$device" ]]; then
-    device=$(lsblk -o NAME,SIZE,TYPE -d | grep disk | sort -k2 -h | tail -n 1 | grep -oE '[a-z]+[0-9]*' | head -1)
+    device=$(lsblk -o NAME,SIZE,TYPE -d | grep disk | sort -k2 -h | tail -n 1 | awk '{print $1}' | sed 's/[^a-zA-Z0-9]//g')
 fi
 
 if [[ -z "$device" ]]; then
     error="Failed to discover root host block device"
 else
-    echo "Trying to mount root host device /dev/${device} ..."
+    echo "Trying to mount /dev/${device} ..."
     
     # Create mount point directory
     mkdir -p /mnt/host

