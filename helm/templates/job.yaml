@@ -77,18 +77,11 @@ spec:
 {{ toYaml . | indent 8 }}
       {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
-      {{- if or (gt (len .Values.configMap.config) 0) .Values.hostMount.enabled }}
+      {{- if (gt (len .Values.configMap.config) 0) }}
       volumes:
-        {{- if (gt (len .Values.configMap.config) 0) }}
         - name: {{ include "cronjob.volumeName" . }}
           configMap:
             name: {{ include "cronjob.fullname" . }}
-        {{- end }}
-        {{- if .Values.hostMount.enabled }}
-        - name: host-mount
-          hostPath:
-            path: "/"
-        {{- end }}
       {{- end }}
   backoffLimit: {{ .Values.backoffLimit }}
 

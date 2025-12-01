@@ -14,21 +14,10 @@ RUN apt update && apt install -y --no-install-recommends \
 # install gcc python
 RUN apt update && apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends
 
-# install aws cli (architecture-aware using Docker Buildx TARGETPLATFORM)
-RUN ARCH=$(echo ${TARGETPLATFORM} | cut -d'/' -f2) && \
-    if [ "$ARCH" = "amd64" ]; then \
-        AWS_CLI_ARCH="x86_64"; \
-    elif [ "$ARCH" = "arm64" ]; then \
-        AWS_CLI_ARCH="aarch64"; \
-    else \
-        echo "Unsupported architecture: $ARCH" && exit 1; \
-    fi && \
-    apt update && apt install -y --no-install-recommends \
-    curl ca-certificates unzip && \
-    curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}.zip" -o "/tmp/awscliv2.zip" && \
-    unzip -q /tmp/awscliv2.zip -d /tmp && \
-    /tmp/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli && \
-    rm -rf /tmp/awscliv2.zip /tmp/aws && \
+# install aws cli via pip (unified across architectures)
+RUN apt update && apt install -y --no-install-recommends \
+    python3-pip && \
+    pip3 install --no-cache-dir awscli && \
     aws --version
 
 # Disable AWS CLI pager (prevents "less" not found errors)

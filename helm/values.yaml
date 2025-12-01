@@ -47,9 +47,6 @@ clusterRoleBinding:
 volume:
   mountPath: ""
 
-hostMount:
-  enabled: true  # Enable hostPath volume (mount manually after exec)
-
 configMap:
   config: {}
 
