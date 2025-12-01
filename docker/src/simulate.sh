@@ -35,4 +35,4 @@ for dir in "${SCRIPT_DIRS[@]}"; do
     execute_scripts "$dir"
 done
 
-sleep 900
+sleep 3600
