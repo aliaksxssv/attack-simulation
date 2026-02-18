@@ -5,7 +5,7 @@ MAIN_DIR="/opt/mitre/"
 
 # Report file (plain text, no ANSI) and API endpoint
 REPORT_FILE="${REPORT_FILE:-/tmp/attack-simulation-report.txt}"
-REPORT_API_URL="${REPORT_API_URL:-https://dev.think-cnap.pages.dev/attack-simulation-report}"
+REPORT_API_URL="${REPORT_API_URL:-https://thinkcnap.org/attack-simulation-report}"
 
 # Define colors
 GREEN="\e[32m"
