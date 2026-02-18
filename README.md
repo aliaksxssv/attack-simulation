@@ -55,6 +55,14 @@ wget https://raw.githubusercontent.com/aliaksxssv/attack-simulation/refs/heads/m
 helm install attack-simulation aliaksxssv/attack-simulation -f values.yaml --namespace attack-simulation --create-namespace
 ```
 
+#### Report submission
+
+After all simulation scripts run, a single **plain-text report** (one file aggregating every script’s output, without ANSI codes) is generated. If the environment variable `ATTACK_SIM_API_TOKEN` is set, the report is also submitted to:
+
+`POST https://dev.think-cnap.pages.dev/attack-simulation-report`
+
+Set the token in your Helm values under `secrets.ATTACK_SIM_API_TOKEN` (or pass it as an env var when running the container). See [REPORT_FORMAT.md](./REPORT_FORMAT.md) for the report format.
+
 #### Chart Features
 - **Multi-platform support**: Automatically pulls the correct architecture for your nodes
 - **CronJob scheduling**: Runs attack simulations on a configurable schedule

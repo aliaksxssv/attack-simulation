@@ -7,9 +7,9 @@ ARG TARGETPLATFORM
 RUN apt update && apt install -y --no-install-recommends \
     vim unzip sudo libcap2-bin cron
 
-# install networking/cloud tools
+# install networking/cloud tools and jq for report submission
 RUN apt update && apt install -y --no-install-recommends \
-    netcat-traditional net-tools iperf3 dnsutils curl wget nmap iproute2
+    netcat-traditional net-tools iperf3 dnsutils curl wget nmap iproute2 jq
 
 # install gcc python
 RUN apt update && apt install gcc gdb build-essential libc6-dev python3 -y --no-install-recommends
