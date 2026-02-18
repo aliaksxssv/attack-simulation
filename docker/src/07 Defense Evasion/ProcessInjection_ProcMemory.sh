@@ -21,3 +21,6 @@ if [[ -n "$error" ]]; then
     else
         echo -e "${GREEN}Success! Malicious code was injected ${RESET}"
 fi
+
+# Stop the background nc so the script can exit (bash waits for background jobs otherwise)
+kill $pid 2>/dev/null || true

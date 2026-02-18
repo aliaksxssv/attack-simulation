@@ -14,6 +14,7 @@ echo "Attempting to bind bash stdin to the local TCP port 4444 ..."
 
 # launch local listener
 nc -lp 4444 > /dev/null 2>&1 &
+listener_pid=$!
 sleep 2
 
 # execute bash after connection is established
@@ -22,3 +23,6 @@ if ! (nc 127.0.0.1 4444 -e /bin/bash > /dev/null 2>&1 &); then
     else
         echo -e "${GREEN}Success! Reverse Shell connection was established ${RESET}"
 fi
+
+# Stop background listeners so the script can exit
+kill $listener_pid 2>/dev/null || true
