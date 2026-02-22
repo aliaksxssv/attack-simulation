@@ -51,8 +51,9 @@ configMap:
   config: {}
 
 secrets:
+  # Simulation of AWS IAM Permissions Enumeration Attack (optional)
   AWS_ACCESS_KEY_ID: ""
   AWS_SECRET_ACCESS_KEY: ""
   AWS_REGION: ""
-  # Token for submitting the simulation report to the API (optional)
+  # Export Attack Simulation Results to thinkcnap.org (optional)
   ATTACK_SIM_API_TOKEN: ""
