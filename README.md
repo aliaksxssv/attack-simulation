@@ -2,6 +2,8 @@
 
 A Docker image that executes scripts simulating MITRE ATT&CK techniques and their impact within a Kubernetes cluster to test and validate security controls and detection mechanisms. 
 
+![Screenshot](./images/screenshot.png)
+
 ### Helm chart installation
 
 ```bash
